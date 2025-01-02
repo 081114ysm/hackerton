@@ -1,15 +1,18 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
 
 const App = () => {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </Router>
+    <div style={{ display: "flex" }}>
+      <Sidebar />
+      <div style={{ marginLeft: "200px", padding: "20px", flexGrow: 1 }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </div>
+    </div>
   );
 };
 
