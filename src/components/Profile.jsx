@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   return (
@@ -13,7 +14,17 @@ const Profile = () => {
           height: "100px",
         }}
       />
-      <div style={{ color: "whitesmoke" }}>User</div>
+      <Link
+        to="/mypage"
+        style={{
+          color: "whitesmoke",
+          cursor: "pointer",
+          textDecoration: "none",
+          display: "block",
+        }}
+      >
+        User
+      </Link>
     </div>
   );
 };
