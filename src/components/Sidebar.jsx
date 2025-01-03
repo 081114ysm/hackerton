@@ -36,6 +36,7 @@ const Sidebar = () => {
     color: hoveredIndex === index ? "#FBCEB1" : "whitesmoke",
     fontSize: "20px",
     marginBottom: "20%",
+    fontFamily: "GowunDodum-Regular",
   });
 
   return (
@@ -51,7 +52,9 @@ const Sidebar = () => {
         >
           <FontAwesomeIcon
             icon={menu.icon}
-            style={{ margin: "0 20px 0 10px" }}
+            style={{
+              margin: "0 20px 0 10px",
+            }}
           />
           {menu.name}
         </NavLink>

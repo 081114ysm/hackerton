@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import "../assets/fonts/fonts.css";
 
 const Home = () => {
   const mypageContainer = {
@@ -10,24 +11,19 @@ const Home = () => {
     background: "linear-gradient(to right, #3D5AB8, #8398DC)",
   };
 
-  // 스크롤 방지
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, []);
-
   const mainTitle = {
     padding: "20% 0 20px 0 ",
-    fontSize: "50px",
+    fontSize: "55px",
     fontWeight: "bold",
     color: "#111",
+    fontFamily: "LeferiPoint-SpecialItalicA",
   };
 
   const serveTitle = {
     fontSize: "20px",
     color: "#111",
+    fontFamily: "GowunDodum-Regular",
+    fontWeight: "500",
   };
 
   const navigate = useNavigate();
@@ -47,13 +43,14 @@ const Home = () => {
     fontSize: "15px",
     fontWeight: "bold",
     cursor: "pointer",
+    fontFamily: "LeferiPoint-SpecialItalicA",
   };
 
   return (
     <div style={mypageContainer}>
       <div className="titles">
         <div style={mainTitle}>
-          Welcome to Real-time translation video CHAT !!
+          Welcome to <br /> Real-time translation video CHAT !!
         </div>
         <div style={serveTitle}>
           Do you find it difficult to video chat with foreigners?

@@ -21,6 +21,7 @@ const Profile = () => {
           cursor: "pointer",
           textDecoration: "none",
           display: "block",
+          fontFamily: "GowunDodum-Regular",
         }}
       >
         User
