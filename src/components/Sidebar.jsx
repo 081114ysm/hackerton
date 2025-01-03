@@ -24,7 +24,7 @@ const Sidebar = () => {
     width: "200px",
     height: "100vh",
     backgroundColor: "#3D5AB8",
-    padding: "5% 30px",
+    padding: "5% 30px ",
   };
 
   const [hoveredIndex, setHoveredIndex] = useState(null);
