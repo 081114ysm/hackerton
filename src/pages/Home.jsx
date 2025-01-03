@@ -1,6 +1,5 @@
-// Home.jsx
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const mypageContainer = {
@@ -11,6 +10,7 @@ const Home = () => {
     background: "linear-gradient(to right, #3D5AB8, #8398DC)",
   };
 
+  // 스크롤 방지
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -19,26 +19,53 @@ const Home = () => {
   }, []);
 
   const mainTitle = {
-    padding: "23% 0 20px 0 ",
+    padding: "20% 0 20px 0 ",
     fontSize: "50px",
     fontWeight: "bold",
+    color: "#111",
   };
 
   const serveTitle = {
     fontSize: "20px",
+    color: "#111",
   };
+
+  const navigate = useNavigate();
+
+  //videochat 으로 이동
+  const handleStartChat = () => {
+    navigate("/videochat");
+  };
+
+  const startButton = {
+    backgroundColor: "#FEB3AA",
+    padding: "15px 30px",
+    border: "0",
+    borderRadius: "10px",
+    marginTop: "30px",
+    color: "white",
+    fontSize: "15px",
+    fontWeight: "bold",
+    cursor: "pointer",
+  };
+
   return (
     <div style={mypageContainer}>
-      <div style={mainTitle}>
-        Welcome to Real-time translation video CHAT !!
+      <div className="titles">
+        <div style={mainTitle}>
+          Welcome to Real-time translation video CHAT !!
+        </div>
+        <div style={serveTitle}>
+          Do you find it difficult to video chat with foreigners?
+        </div>
+        <div style={serveTitle}>
+          Achieve smooth communication with diverse cultures through real-time
+          translation!
+        </div>
       </div>
-      <div style={serveTitle}>
-        Do you find it difficult to video chat with foreigners?
-      </div>
-      <div style={serveTitle}>
-        Achieve smooth communication with diverse cultures through real-time
-        translation!
-      </div>
+      <button onClick={handleStartChat} style={startButton}>
+        Start Chat!
+      </button>
     </div>
   );
 };
