@@ -1,44 +1,73 @@
 import React from "react";
-import profileImage from "../assets/images/profile.jpg"; // Adjust the path as necessary
+import styled from "styled-components";
+import profileImage from "../assets/images/profile.jpg";
+import { useUser } from "../store/UserContext";
+
+// Styled Components 정의
+const BigBox = styled.div`
+  width: 80%;
+  height: 80vh;
+  margin-left: 20%;
+  border: 1px solid #fff;
+  border-radius: 10px;
+  display: flex;
+`;
+
+const UserImage = styled.div`
+  width: 200px;
+  height: 200px;
+  background-image: url(${profileImage}); // 이미지 URL을 템플릿 리터럴로 사용
+  background-size: cover;
+  background-position: center;
+  border-radius: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 60px auto;
+`;
+
+const UserDetails = styled.div`
+  text-align: center;
+  color: #fff;
+`;
+
+const UserAlter = styled.div`
+  width: 50%;
+  background-color: #fff;
+  height: 500px;
+  border-radius: 20px;
+  margin: 50px auto;
+  border: 1px solid #fff;
+`;
 
 const MyPage = () => {
-  const bigBoxStyle = {
-    width: "80%",
-    height: "600px",
-    margin: "30px auto",
-    backgroundColor: "#fff",
-    border: "1px solid #000",
-    borderRadius: "10px",
-    display: "flex",
-  };
-
-  const userImageStyle = {
-    width: "200px",
-    height: "200px",
-    backgroundImage: `url(${profileImage})`, // Use template literals for dynamic URLs
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    borderRadius: "100%",
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-    margin: "60px auto",
-  };
-
-  const userAlterStyle = {
-    width: "50%",
-    backgroundColor: "#fff",
-    height: "500px",
-    borderRadius: "20px",
-    margin: "50px auto",
-    border: "1px solid #000",
-  };
+  const { username, followingCount, followerCount, country, ageRange } =
+    useUser();
 
   return (
-    <div>
-      <div style={bigBoxStyle}>
-        <div style={userImageStyle}></div>
-        <div style={userAlterStyle}></div>
+    <div style={{ backgroundColor: "#333", margin: 0 }}>
+      <div style={{ padding: "5%" }}>
+        <BigBox>
+          <div
+            style={{
+              display: "flex",
+              marginLeft: "10%",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <UserImage />
+            <UserDetails>
+              <h2>{username}</h2>
+              <p>Following: {followingCount}</p>
+              <p>Followers: {followerCount}</p>
+              <p>Country: {country}</p>
+              <p>Age Range: {ageRange}</p>
+            </UserDetails>
+          </div>
+
+          <UserAlter />
+        </BigBox>
       </div>
     </div>
   );

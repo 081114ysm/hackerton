@@ -5,6 +5,7 @@ import Sidebar from "./components/Sidebar";
 import Settings from "./pages/Settings";
 import VideoChat from "./pages/Videochat";
 import MyPage from "./pages/Mypage";
+import { UserProvider } from "./store/UserContext";
 
 const App = () => {
   return (
@@ -15,7 +16,14 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/videochat" element={<VideoChat />} />
-          <Route path="/mypage" element={<MyPage />} />
+          <Route
+            path="/mypage"
+            element={
+              <UserProvider>
+                <MyPage />
+              </UserProvider>
+            }
+          />
         </Routes>
       </div>
     </div>
