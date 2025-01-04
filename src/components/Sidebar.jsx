@@ -1,13 +1,46 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import Profile from "./Profile";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHouse } from "@fortawesome/free-solid-svg-icons";
-import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
-import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import { faShuffle } from "@fortawesome/free-solid-svg-icons";
-import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
-import { faGear } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHouse,
+  faUserPlus,
+  faRightFromBracket,
+  faShuffle,
+  faTriangleExclamation,
+  faGear,
+} from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
+
+// Styled components 정의
+const SidebarContainer = styled.div`
+  position: fixed; /* 고정 위치 설정 */
+  top: 0; /* 상단에 위치 */
+  left: 0; /* 왼쪽에 위치 */
+  margin: 0;
+  width: 200px;
+  height: 100vh; /* 전체 높이 */
+  background-color: #3d5ab8;
+  padding: 5% 30px;
+`;
+
+const StyledNavLink = styled(NavLink)`
+  display: block;
+  margin: 10px 0;
+  text-decoration: none;
+  color: ${({ isHovered }) => (isHovered ? "#FBCEB1" : "whitesmoke")};
+  font-size: 20px;
+  margin-bottom: 20%;
+  font-family: "GowunDodum-Regular";
+
+  &:hover {
+    color: #fbceb1; // 마우스 오버 시 색상 변경
+  }
+`;
+
+const IconWrapper = styled.span`
+  margin: 0 20px 0 10px;
+`;
 
 const Sidebar = () => {
   const menus = [
@@ -19,44 +52,38 @@ const Sidebar = () => {
     { name: "Settings", path: "/settings", icon: faGear },
   ];
 
-  const sidebarStyle = {
-    margin: "0",
-    width: "200px",
-    height: "100vh",
-    backgroundColor: "#3D5AB8",
-    padding: "5% 30px ",
-  };
-
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
-  const linkStyle = (index) => ({
-    display: "block",
-    margin: "10px 0",
-    textDecoration: "none",
-    color: hoveredIndex === index ? "#FBCEB1" : "whitesmoke",
-    fontSize: "20px",
-    marginBottom: "20%",
-  });
+  // 현재 경로 가져오기
+  const location = useLocation();
+
+  // 로그인 페이지 경로 확인
+  const isLoginPage = location.pathname === "/login";
+  const isSignupPage = location.pathname === "/signup";
+
+  // 로그인 페이지가 아닐 때만 사이드바 렌더링
+  if (isLoginPage || isSignupPage) {
+    return null; // 로그인 페이지에서는 사이드바를 렌더링하지 않음
+  }
 
   return (
-    <div style={sidebarStyle}>
+    <SidebarContainer>
       <Profile />
       {menus.map((menu, index) => (
-        <NavLink
+        <StyledNavLink
           key={index}
           to={menu.path}
-          style={linkStyle(index)}
+          isHovered={hoveredIndex === index}
           onMouseEnter={() => setHoveredIndex(index)}
           onMouseLeave={() => setHoveredIndex(null)}
         >
-          <FontAwesomeIcon
-            icon={menu.icon}
-            style={{ margin: "0 20px 0 10px" }}
-          />
+          <IconWrapper>
+            <FontAwesomeIcon icon={menu.icon} />
+          </IconWrapper>
           {menu.name}
-        </NavLink>
+        </StyledNavLink>
       ))}
-    </div>
+    </SidebarContainer>
   );
 };
 
