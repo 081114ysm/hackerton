@@ -3,37 +3,39 @@ import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faPlus } from "@fortawesome/free-solid-svg-icons";
 
+const FigureContainer = styled.div`
+  display: flex;
+  position: absolute;
+  top: 30px;
+  left: 23.5%;
+`;
+
 const UserFigure = styled.div`
-  width: 520px;
+  width: 35vw;
   height: 300px;
   background: #000;
-  position: absolute;
-  top: 2%;
-  left: 23%;
+  border: 1px solid #c0c5d4;
 `;
 
 const MyFigure = styled.div`
-  width: 520px;
+  width: 35vw;
   height: 300px;
   background: #000;
-  position: absolute;
-  top: 2%;
-  left: 60%;
+  border: 1px solid #c0c5d4;
 `;
 
 const ChatContainer = styled.div`
-  width: 1070px;
-  height: 300px;
+  width: 69.5vw;
+  height: 45vh;
   background-color: #fff;
-  border: 1px solid #555;
   border-radius: 25px;
   padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   position: absolute;
-  top: 45%;
-  left: 23%;
+  top: 48%;
+  left: 23.2%;
   overflow: hidden;
 `;
 
@@ -51,7 +53,7 @@ const MessagesContainer = styled.div`
 
 const PlusIcon = styled.div`
   position: fixed;
-  top: 47%;
+  top: 50%;
   left: 24.3%;
   font-size: 28px;
   color: #007bff;
@@ -73,26 +75,25 @@ const Message = styled.div`
 `;
 
 const InputContainer = styled.div`
-  width: 1090px;
+  width: 70vw;
   height: 45px;
   display: flex;
   align-items: center;
-  border: 1px solid #555;
-  border-radius: 5px;
   position: absolute;
-  top: 90%;
-  left: 23%;
-  background-color: #fff;
+  top: 88%;
+  left: 23.5%;
   gap: 10px;
 `;
 
 const Input = styled.input`
-  flex: 1;
-  border: none;
+  // flex: 1;
+  width: 62vw;
+  margin: 0 10px 0 30px;
+  border: 1px solid lightgray;
   outline: none;
   font-size: 16px;
   padding: 10px;
-  border-radius: 5px 0 0 5px;
+  border-radius: 10px;
 `;
 
 const SendButton = styled.button`
@@ -108,7 +109,6 @@ const SendButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: -15px;
 
   &:hover {
     background-color: #0056b3;
@@ -140,9 +140,12 @@ const VideoChat = () => {
   };
 
   return (
-    <div style={{ backgroundColor: "#333", margin: 0, minHeight: "100vh" }}>
-      <UserFigure></UserFigure>
-      <MyFigure></MyFigure>
+    <div style={{ backgroundColor: "#C0C5D4", margin: 0, minHeight: "100vh" }}>
+      <FigureContainer>
+        <UserFigure />
+        <MyFigure />
+      </FigureContainer>
+
       <ChatContainer>
         <MessagesContainer>
           <PlusIcon>
