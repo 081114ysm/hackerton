@@ -6,6 +6,8 @@ import Settings from "./pages/Settings";
 import VideoChat from "./pages/Videochat";
 import MyPage from "./pages/Mypage";
 import { UserProvider } from "./store/UserContext";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 const App = () => {
   return (
@@ -14,6 +16,8 @@ const App = () => {
       <div style={{ flexGrow: 1 }}>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/videochat" element={<VideoChat />} />
           <Route

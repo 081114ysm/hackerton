@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import Profile from "./Profile";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -53,6 +53,18 @@ const Sidebar = () => {
   ];
 
   const [hoveredIndex, setHoveredIndex] = useState(null);
+
+  // 현재 경로 가져오기
+  const location = useLocation();
+
+  // 로그인 페이지 경로 확인
+  const isLoginPage = location.pathname === "/login";
+  const isSignupPage = location.pathname === "/signup";
+
+  // 로그인 페이지가 아닐 때만 사이드바 렌더링
+  if (isLoginPage || isSignupPage) {
+    return null; // 로그인 페이지에서는 사이드바를 렌더링하지 않음
+  }
 
   return (
     <SidebarContainer>
