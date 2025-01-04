@@ -1,11 +1,22 @@
 // Videochat.jsx
 import React from "react";
+import styled from "styled-components";
+
+const OtherPeople = styled.div`
+  width: 80%;
+  height: 600px;
+  margin: 90px auto;
+  background-color: #fff;
+  border: 1px solid #000;
+  border-radius: 10px;
+  display: flex;
+`;
 
 const VideoChat = () => {
   return (
-    <div style={{ textAlign: "center", color: "whitesmoke" }}>
-      <h1>Video Chat Room</h1>
-      <p>This is where the video chat will take place.</p>
+    <div>
+      <OtherPeople></OtherPeople>
+      <Mine>asdda</Mine>
     </div>
   );
 };

@@ -34,7 +34,7 @@ const Home = () => {
 
   //videochat 으로 이동
   const handleStartChat = () => {
-    navigate("/videochat");
+    navigate("/Videochat");
   };
 
   const startButton = {
