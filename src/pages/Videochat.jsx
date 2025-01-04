@@ -5,25 +5,25 @@ import { faPaperPlane, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const UserFigure = styled.div`
   width: 520px;
-  height: 300px;
+  height: 330px;
   background: #000;
   position: absolute;
-  top: 2%;
+  top: 3%;
   left: 23%;
 `;
 
 const MyFigure = styled.div`
   width: 520px;
-  height: 300px;
+  height: 330px;
   background: #000;
   position: absolute;
-  top: 2%;
+  top: 3%;
   left: 60%;
 `;
 
 const ChatContainer = styled.div`
   width: 1070px;
-  height: 300px;
+  height: 330px;
   background-color: #fff;
   border: 1px solid #555;
   border-radius: 25px;
@@ -32,7 +32,7 @@ const ChatContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   position: absolute;
-  top: 45%;
+  top: 46%;
   left: 23%;
   overflow: hidden;
 `;

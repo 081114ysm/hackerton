@@ -11,26 +11,21 @@ import Signup from "./pages/Signup";
 
 const App = () => {
   return (
-    <div style={{ display: "flex" }}>
-      <Sidebar />
-      <div style={{ flexGrow: 1 }}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/videochat" element={<VideoChat />} />
-          <Route
-            path="/mypage"
-            element={
-              <UserProvider>
-                <MyPage />
-              </UserProvider>
-            }
-          />
-        </Routes>
+    <UserProvider>
+      <div style={{ display: "flex" }}>
+        <Sidebar />
+        <div style={{ flexGrow: 1 }}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/videochat" element={<VideoChat />} />
+            <Route path="/mypage" element={<MyPage />} />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </UserProvider>
   );
 };
 
