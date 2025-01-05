@@ -48,6 +48,12 @@ const InputGroup = styled.div`
   margin: 10px 0px 0px 50px;
 `;
 
+const Label = styled.label`
+  font-size: 16px;
+  margin-right: 10px;
+  color: #333;
+`;
+
 const Button = styled.button`
   width: auto;
   padding: 10px 15px;
@@ -65,20 +71,46 @@ const Button = styled.button`
   }
 `;
 
+const Select = styled.select`
+  width: 75%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-left: -89px;
+`;
+
+const Select1 = styled.select`
+  width: 75%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-left: -50px;
+`;
+
 const Input = styled.input`
   width: 70%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 16px;
+  margin-left: -50px;
 `;
 
 const MyPage = () => {
   const navigate = useNavigate();
-  const { username, followingCount, followerCount, country: initialCountry, ageRange } = useUser();
+  const {
+    username: initialUsername,
+    followingCount,
+    followerCount,
+    country: initialCountry,
+    ageRange,
+  } = useUser();
   const [selectedImage, setSelectedImage] = useState(profileImage);
-  const [countryInput, setCountryInput] = useState(initialCountry);
-  const [ageInput, setAgeInput] = useState(ageRange);
+  const [username, setUsername] = useState(initialUsername);
+  const [country, setCountry] = useState(initialCountry);
+  const [age, setAge] = useState(ageRange);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -88,12 +120,28 @@ const MyPage = () => {
     }
   };
 
+  const handleUsernameChange = () => {
+    if (username) {
+      alert(`사용자 이름이 ${username}(으)로 변경되었습니다.`);
+    } else {
+      alert("새 사용자 이름을 입력해주세요.");
+    }
+  };
+
   const handleCountryChange = () => {
-    alert(`국가가 ${countryInput || initialCountry}로 변경되었습니다.`);
+    if (country) {
+      alert(`국가가 ${country}로 변경되었습니다.`);
+    } else {
+      alert("국가를 선택해주세요.");
+    }
   };
 
   const handleAgeChange = () => {
-    alert(`나이가 ${ageInput || ageRange}로 변경되었습니다.`);
+    if (age) {
+      alert(`나이대가 ${age}로 변경되었습니다.`);
+    } else {
+      alert("나이대를 선택해주세요.");
+    }
   };
 
   const handleDeleteAccount = () => {
@@ -125,63 +173,110 @@ const MyPage = () => {
               <h2>{username}</h2>
               <p>Following: {followingCount}</p>
               <p>Followers: {followerCount}</p>
-              <p>Country: {countryInput || initialCountry}</p>
-              <p>Age Range: {ageInput}</p>
+              <p>Country: {country}</p>
+              <p>Age Range: {age}</p>
             </UserDetails>
           </div>
 
           <UserAlter>
-            <h3 style={{ textAlign: "center", marginBottom: "20px" }}>Setting</h3>
+            <h3 style={{ textAlign: "center", marginBottom: "20px" }}>
+              Setting
+            </h3>
 
+            {/* 사용자 이름 변경 */}
             <InputGroup>
               <Input
+                id="username"
                 type="text"
-                value={countryInput}
-                onChange={(e) => setCountryInput(e.target.value)}
-                placeholder="새 국가 입력"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Enter new username"
               />
-              <Button onClick={handleCountryChange}>국가 변경</Button>
+              <Button onClick={handleUsernameChange}>Change Username</Button>
             </InputGroup>
 
+            {/* 국가 변경 */}
             <InputGroup>
-              <Input
-                type="text"
-                value={ageInput}
-                onChange={(e) => setAgeInput(e.target.value)}
-                placeholder="새 나이 입력"
-              />
-              <Button onClick={handleAgeChange}>나이 변경</Button>
+              <Select1
+                id="country"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+              >
+                <option value="">Select your country</option>
+                <option value="USA">United States</option>
+                <option value="CAN">Canada</option>
+                <option value="GBR">United Kingdom</option>
+                <option value="AUS">Australia</option>
+                <option value="DEU">Germany</option>
+                <option value="FRA">France</option>
+                <option value="IND">India</option>
+                <option value="JPN">Japan</option>
+                <option value="BRA">Brazil</option>
+                <option value="ZAF">South Africa</option>
+                <option value="ITA">Italy</option>
+                <option value="MEX">Mexico</option>
+                <option value="ESP">Spain</option>
+                <option value="NGA">Nigeria</option>
+                <option value="IDN">Indonesia</option>
+                <option value="PHL">Philippines</option>
+                <option value="RUS">Russia</option>
+                <option value="KOR">South Korea</option>
+                <option value="SGP">Singapore</option>
+                <option value="THA">Thailand</option>
+                <option value="VN">Vietnam</option>
+                <option value="TUR">Turkey</option>
+              </Select1>
+              <Button onClick={handleCountryChange}>Change Country</Button>
+            </InputGroup>
+
+            {/* 나이대 변경 */}
+            <InputGroup>
+              <Label htmlFor="age">Age</Label>
+              <Select
+                id="age"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+              >
+                <option value="">Select your age group</option>
+                <option value="10-19">10-19</option>
+                <option value="20-29">20-29</option>
+                <option value="30-39">30-39</option>
+                <option value="40-49">40-49</option>
+                <option value="50-59">50-59</option>
+                <option value="60+">60+</option>
+              </Select>
+              <Button onClick={handleAgeChange}>Change Age</Button>
             </InputGroup>
 
             <InputGroup>
               <Input type="file" onChange={handleImageChange} />
-              <Button>사진 변경</Button>
+              <Button>Change Profile</Button>
             </InputGroup>
 
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <Button
                 onClick={handleMemberChange}
                 style={{
-                  backgroundColor: "#5cb85c",
+                  backgroundColor: "#6B83D0",
                   marginTop: "150px",
                   marginLeft: "70px",
                   display: "inline-block",
                   width: "30%",
                 }}
               >
-                회원 변경
+                User Change
               </Button>
               <Button
                 onClick={handleDeleteAccount}
                 style={{
-                  backgroundColor: "#d9534f",
+                  backgroundColor: "#6B83D0",
                   marginTop: "150px",
                   marginRight: "70px",
                   display: "inline-block",
                   width: "30%",
                 }}
               >
-                회원 탈퇴
+                User Out
               </Button>
             </div>
           </UserAlter>
