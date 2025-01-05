@@ -8,7 +8,6 @@ import {
   faRightFromBracket,
   faShuffle,
   faTriangleExclamation,
-  faGear,
 } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
@@ -175,7 +174,6 @@ const Sidebar = () => {
       action: handleComplaintClick,
       isClickable: true,
     },
-    { name: "Settings", path: "/settings", icon: faGear },
   ];
 
   return (
