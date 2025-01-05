@@ -182,8 +182,6 @@ const MyPage = () => {
             <h3 style={{ textAlign: "center", marginBottom: "20px" }}>
               Setting
             </h3>
-
-            {/* 사용자 이름 변경 */}
             <InputGroup>
               <Input
                 id="username"
@@ -194,8 +192,6 @@ const MyPage = () => {
               />
               <Button onClick={handleUsernameChange}>Change Username</Button>
             </InputGroup>
-
-            {/* 국가 변경 */}
             <InputGroup>
               <Select1
                 id="country"
@@ -229,7 +225,6 @@ const MyPage = () => {
               <Button onClick={handleCountryChange}>Change Country</Button>
             </InputGroup>
 
-            {/* 나이대 변경 */}
             <InputGroup>
               <Label htmlFor="age">Age</Label>
               <Select
