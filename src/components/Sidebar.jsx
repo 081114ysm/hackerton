@@ -12,7 +12,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
-// Styled components 정의
 const SidebarContainer = styled.div`
   position: fixed;
   top: 0;
@@ -60,15 +59,11 @@ const Popup = styled.div`
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  font-family: "GowunDodum-Regular", sans-serif;
-  margin-left: -50px;
 `;
 
 const PopupTitle = styled.h3`
   font-size: 22px;
   color: #3d5ab8;
-  margin-bottom: 15px;
 `;
 
 const Textarea = styled.textarea`
@@ -88,7 +83,7 @@ const Textarea = styled.textarea`
 `;
 
 const Button = styled.button`
-  padding: 12px 20px;
+  padding: 12px;
   background-color: #3d5ab8;
   color: white;
   font-size: 16px;
@@ -97,7 +92,7 @@ const Button = styled.button`
   border-radius: 8px;
   cursor: pointer;
   width: 100%;
-  transition: background-color 0.3s ease;
+  transition: bg-color 0.3s ease;
 
   &:hover {
     background-color: #2c4a9d;
@@ -115,43 +110,71 @@ const Sidebar = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isFriendAdded, setIsFriendAdded] = useState(false);
 
-  // 로그인/회원가입 페이지에서는 사이드바 숨김
   if (location.pathname === "/login" || location.pathname === "/signup") {
     return null;
   }
 
-  // Complaint 팝업 핸들러
-  const handleComplaintClick = () => setIsPopupOpen(true);
+  const handleComplaintClick = () => {
+    if (location.pathname === "/videochat") {
+      setIsPopupOpen(true);
+    } else {
+      alert("화상 채팅중이 아닙니다.");
+    }
+  };
 
   const handleClosePopup = () => {
     setIsPopupOpen(false);
     alert("신고되었습니다.");
   };
 
-  // Add as Friends 핸들러
   const handleAddFriendClick = () => {
-    if (isFriendAdded) {
-      alert("이미 친구입니다.");
+    if (location.pathname === "/videochat") {
+      if (isFriendAdded) {
+        alert("이미 친구입니다.");
+      } else {
+        setIsFriendAdded(true);
+        alert("친구가 추가되었습니다.");
+      }
     } else {
-      setIsFriendAdded(true);
-      alert("친구가 추가되었습니다.");
+      alert("화상 채팅중이 아닙니다.");
     }
   };
 
-  // Exit 핸들러
   const handleExitClick = () => {
-    const confirmExit = window.confirm("정말로 나가시겠습니까?");
-    if (confirmExit) {
-      navigate("/login");
+    if (location.pathname === "/videochat") {
+      const confirmExit = window.confirm("정말로 나가시겠습니까?");
+      if (confirmExit) {
+        navigate("/login");
+      }
+    } else {
+      alert("화상 채팅중이 아닙니다.");
     }
   };
 
   const menus = [
     { name: "Home", path: "/", icon: faHouse },
-    { name: "Add as Friends", path: "/", icon: faUserPlus, action: handleAddFriendClick },
-    { name: "Exit", path: "/login", icon: faRightFromBracket, action: handleExitClick },
+    {
+      name: "Add as Friends",
+      path: "/videochat",
+      icon: faUserPlus,
+      action: handleAddFriendClick,
+      isClickable: true,
+    },
+    {
+      name: "Exit",
+      path: "/login",
+      icon: faRightFromBracket,
+      action: handleExitClick,
+      isClickable: true,
+    },
     { name: "Match again", path: "/match-again", icon: faShuffle },
-    { name: "Complaint", path: "/complaint", icon: faTriangleExclamation, action: handleComplaintClick },
+    {
+      name: "Complaint",
+      path: "/complaint",
+      icon: faTriangleExclamation,
+      action: handleComplaintClick,
+      isClickable: true,
+    },
     { name: "Settings", path: "/settings", icon: faGear },
   ];
 
@@ -161,9 +184,9 @@ const Sidebar = () => {
       {menus.map((menu, index) => (
         <StyledNavLink
           key={index}
-          to={menu.path}
+          to={menu.isClickable ? "#" : menu.path} // Prevent navigation for clickable actions
           isHovered={hoveredIndex === index}
-          onClick={menu.action}
+          onClick={menu.isClickable ? menu.action : undefined} // Call action only for clickable items
           onMouseEnter={() => setHoveredIndex(index)}
           onMouseLeave={() => setHoveredIndex(null)}
         >
