@@ -35,7 +35,7 @@ const StartButton = styled.button`
   padding: 15px 30px;
   border: none;
   border-radius: 10px;
-  margin-top: 30px;
+  margin: 30px 0 0 100px;
   color: white;
   font-size: 15px;
   font-weight: bold;

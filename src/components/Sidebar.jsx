@@ -28,13 +28,10 @@ const StyledNavLink = styled(NavLink)`
   margin: 10px 0;
   text-decoration: none;
   color: ${({ isHovered }) => (isHovered ? "#FBCEB1" : "whitesmoke")};
+  transition: color 0.2s ease;
   font-size: 20px;
   margin-bottom: 20%;
   font-family: "GowunDodum-Regular";
-
-  &:hover {
-    color: #fbceb1;
-  }
 `;
 
 const IconWrapper = styled.span`
@@ -122,9 +119,14 @@ const Sidebar = () => {
     }
   };
 
+  const handleComplaintSubmit = () => {
+    setIsPopupOpen(false);
+    alert("신고되었습니다."); // 신고 완료
+  };
+
   const handleClosePopup = () => {
     setIsPopupOpen(false);
-    alert("신고되었습니다.");
+    alert("신고가 취소되었습니다."); // 신고 취소
   };
 
   const handleAddFriendClick = () => {
@@ -202,7 +204,8 @@ const Sidebar = () => {
           <Popup>
             <PopupTitle>신고 사유</PopupTitle>
             <Textarea placeholder="사유 입력" />
-            <Button onClick={handleClosePopup}>신고</Button>
+            <Button onClick={handleComplaintSubmit}>신고</Button>
+            <Button onClick={handleClosePopup}>닫기</Button>
           </Popup>
         </PopupOverlay>
       )}
