@@ -2,12 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane, faPlus } from "@fortawesome/free-solid-svg-icons";
+import Webcam from "react-webcam";
 
 const FigureContainer = styled.div`
   display: flex;
   position: absolute;
   top: 30px;
-  left: 23.5%;
+  left: 25%;
 `;
 
 const UserFigure = styled.div`
@@ -142,8 +143,23 @@ const VideoChat = () => {
   return (
     <div style={{ backgroundColor: "#C0C5D4", margin: 0, minHeight: "100vh" }}>
       <FigureContainer>
-        <UserFigure />
-        <MyFigure />
+        {/* <UserFigure /> */}
+        <Webcam
+          audio={false}
+          height={300}
+          screenshotFormat="image/jpeg"
+          width={500}
+          videoConstraints={{
+            width: "500",
+            height: "300",
+            facingMode: "user",
+          }}
+          style={{
+            border: "1px solid #c0c5d4",
+          }}
+        />
+        <Webcam style={{ width: "35vw", height: "300px" }} />
+        {/* <MyFigure /> */}
       </FigureContainer>
 
       <ChatContainer>
