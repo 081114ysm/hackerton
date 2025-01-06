@@ -11,20 +11,6 @@ const FigureContainer = styled.div`
   left: 25%;
 `;
 
-const UserFigure = styled.div`
-  width: 35vw;
-  height: 300px;
-  background: #000;
-  border: 1px solid #c0c5d4;
-`;
-
-const MyFigure = styled.div`
-  width: 35vw;
-  height: 300px;
-  background: #000;
-  border: 1px solid #c0c5d4;
-`;
-
 const ChatContainer = styled.div`
   width: 69.5vw;
   height: 45vh;
@@ -143,7 +129,6 @@ const VideoChat = () => {
   return (
     <div style={{ backgroundColor: "#C0C5D4", margin: 0, minHeight: "100vh" }}>
       <FigureContainer>
-        {/* <UserFigure /> */}
         <Webcam
           audio={false}
           height={300}
@@ -159,7 +144,6 @@ const VideoChat = () => {
           }}
         />
         <Webcam style={{ width: "35vw", height: "300px" }} />
-        {/* <MyFigure /> */}
       </FigureContainer>
 
       <ChatContainer>
