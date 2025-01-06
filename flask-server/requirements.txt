@@ -1,0 +1,6 @@
+Flask
+Flask-MySQLdb
+Werkzeug
+python-dotenv
+langchain-openai
+openai
